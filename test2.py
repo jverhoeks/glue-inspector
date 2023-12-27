@@ -8,7 +8,14 @@ from markdown_table_generator import (
     Alignment,
 )
 
-from glue_inspector.support import GlueProvidedPackage
+from glue_inspector.support import GlueProvidedPackage, MergeRequirements
+
+first = ["awswrangler==2.15.1", "xlrd==2.0.1"]
+second = ["xlrd>=3.0.1"]
+
+
+merge = MergeRequirements()
+print(merge.merge(first, second))
 
 
 def read_vuln(file_path):

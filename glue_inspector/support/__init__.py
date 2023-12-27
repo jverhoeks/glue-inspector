@@ -1,1 +1,2 @@
-from .packages import GlueProvidedPackage
+from .download import GlueProvidedPackage
+from .merge import MergeRequirements

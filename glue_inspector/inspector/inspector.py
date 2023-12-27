@@ -1,6 +1,17 @@
 import boto3
 import logging
 from pprint import pprint
+from glue_inspector.support import GlueProvidedPackage, MergeRequirements
+from cyclonedx_py.parser.requirements import RequirementsParser
+from cyclonedx.model.bom import Bom
+from cyclonedx.model import Tool
+
+from cyclonedx.output import (
+    BaseOutput,
+    OutputFormat,
+    SchemaVersion,
+    get_instance as get_output_instance,
+)
 
 
 class GlueInspector:
@@ -12,7 +23,6 @@ class GlueInspector:
 
         try:
             response = glue_client.get_job(JobName=job_name)
-            print(response)
 
         except Exception as e:
             logging.error(f"Something went wrong querying job: {job_name}")
@@ -22,10 +32,10 @@ class GlueInspector:
             logging.error(f"No job information found {job_name}")
             return False
 
+        # save the job info
         self.job = response["Job"]
-        pprint(self.job)
 
-        # get details
+        # split out the  details
         self.python_version = self.job["Command"]["PythonVersion"]
         self.glue_type = self.job["Command"]["Name"]
 
@@ -56,9 +66,17 @@ class GlueInspector:
             print("Error")
             return False
 
-        print("Checking job")
+        if self.glue_type == "glueetl":
+            # get the default packages from website or cache
+            glue_modules = GlueProvidedPackage(self.glue_version).get()
+            # merge them with the provided versions
+            self.merged_modules = MergeRequirements().merge(glue_modules, self.modules)
 
-        print(f"{self.glue_type} {self.modules}")
+        elif self.glue_type == "pythonshell":
+            print("Checking with library")
+        else:
+            logging.error("We don't support ray or other types yet")
+            return False
 
     def export_sbom(self, target):
         """Export the Sbom of the glue job
@@ -66,3 +84,16 @@ class GlueInspector:
         Args:
             target (_type_): _description_
         """
+
+        # join list to make a big string
+        parser = RequirementsParser("\n".join(self.merged_modules))
+        bom = Bom.from_parser(parser=parser)
+        bom.metadata.tools.add(Tool(vendor="CycloneDX", name="test", version="1.0"))
+
+        output = get_output_instance(
+            bom=bom,
+            output_format=OutputFormat.JSON,
+            schema_version=SchemaVersion["V{}".format(str("1.4").replace(".", "_"))],
+        )
+
+        pprint(output.output_as_string())
