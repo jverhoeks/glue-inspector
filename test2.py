@@ -44,10 +44,16 @@ def read_vuln(file_path):
 
 
 versions = ["2.0", "3.0", "4.0"]
+pversions = ["3.6", "3.9", "3.9-analytics"]
 
 glue_packages = {}
 for v in versions:
-    glue_packages[v] = GlueProvidedPackage(v).get_dict()
+    glue_packages[v] = GlueProvidedPackage().get_dict("glueetl", v)
+
+
+for p in pversions:
+    glue_packages[p] = GlueProvidedPackage().get_dict("pythonshell", p)
+    print(glue_packages[p])
 
 
 merged_dict = {}

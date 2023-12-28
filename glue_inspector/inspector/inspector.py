@@ -68,7 +68,7 @@ class GlueInspector:
 
         if self.glue_type == "glueetl":
             # get the default packages from website or cache
-            glue_modules = GlueProvidedPackage(self.glue_version).get()
+            glue_modules = GlueProvidedPackage().get(self.glue_type, self.glue_version)
             # merge them with the provided versions
             self.merged_modules = MergeRequirements().merge(glue_modules, self.modules)
 
