@@ -24,7 +24,7 @@ pandas==1.0.1
 patsy==0.5.1
 pmdarima==1.5.3
 ptvsd==4.3.2
-pyarrow==0.16.0
+pyarrow==14.0.1
 pyasn1==0.4.8
 pydevd==1.9.0
 pyhocon==0.3.54

@@ -35,7 +35,7 @@ Pillow==9.4.0
 pip==23.0
 pmdarima==1.8.2
 ptvsd==4.3.2
-pyarrow==5.0.0
+pyarrow==14.0.1
 pydevd==2.5.0
 pyhocon==0.3.58
 PyMySQL==1.0.2
