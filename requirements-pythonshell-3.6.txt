@@ -1,4 +1,4 @@
-awscli==116.242
+awscli==1.32.9
 botocore==1.12.232
 boto3==1.9.203
 numpy==1.16.2

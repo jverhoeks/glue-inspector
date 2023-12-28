@@ -1,5 +1,5 @@
 avro==1.11.0
-awscli==1.23.5
+awscli==1.32.9
 awswrangler==2.15.1
 botocore==1.23.5
 boto3==1.22.5
