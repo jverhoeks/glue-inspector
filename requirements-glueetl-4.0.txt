@@ -24,7 +24,7 @@ jmespath==0.10.0
 joblib==1.0.1
 kiwisolver==1.4.4
 matplotlib==3.4.3
-mpmath==1.2.1
+mpmath==1.3.0
 multidict==6.0.4
 nltk==3.7
 numpy==1.23.5
