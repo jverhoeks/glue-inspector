@@ -1,6 +1,6 @@
 import json
 import logging
-from collections import defaultdict
+from collections import OrderedDict, defaultdict
 from pprint import pprint
 
 from markdown_table_generator import (
@@ -71,6 +71,8 @@ def lookup_vuln(vulns, p, v):
     return ""
 
 
+sorted_dict = OrderedDict(sorted(merged_dict.items()))
+
 headers = [
     "Package",
     "2.0",
@@ -103,7 +105,7 @@ markdown_data = [
         v.get("requirements-pythonshell-3.9-analytics.txt", ""),
         lookup_vuln(merged_vuln, p, v.get("requirements-pythonshell-3.9-analytics.txt", "")),
     ]
-    for p, v in merged_dict.items()
+    for p, v in sorted_dict.items()
 ]
 
 markdown_data.insert(0, headers)
