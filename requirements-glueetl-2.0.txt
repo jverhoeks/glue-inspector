@@ -49,6 +49,6 @@ sympy==1.5.1
 tbats==1.0.9
 tqdm==4.64.1
 typing-extensions==4.4.0
-urllib3==1.25.8
+urllib3==1.26.18
 wheel==0.35.1
 zipp==3.12.0
