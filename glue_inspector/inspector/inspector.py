@@ -1,17 +1,14 @@
-import boto3
 import logging
 from pprint import pprint
-from glue_inspector.support import GlueProvidedPackage, MergeRequirements
-from cyclonedx_py.parser.requirements import RequirementsParser
-from cyclonedx.model.bom import Bom
-from cyclonedx.model import Tool
 
-from cyclonedx.output import (
-    BaseOutput,
-    OutputFormat,
-    SchemaVersion,
-    get_instance as get_output_instance,
-)
+import boto3
+from cyclonedx.model import Tool
+from cyclonedx.model.bom import Bom
+from cyclonedx.output import BaseOutput, OutputFormat, SchemaVersion
+from cyclonedx.output import get_instance as get_output_instance
+from cyclonedx_py.parser.requirements import RequirementsParser
+
+from glue_inspector.support import GlueProvidedPackage, MergeRequirements
 
 
 class GlueInspector:
@@ -25,6 +22,7 @@ class GlueInspector:
             response = glue_client.get_job(JobName=job_name)
 
         except Exception as e:
+            print(e)
             logging.error(f"Something went wrong querying job: {job_name}")
             return False
 
@@ -50,9 +48,7 @@ class GlueInspector:
 
         # extra modules
         if "--additional-python-modules" in self.job["DefaultArguments"]:
-            self.modules = self.job["DefaultArguments"][
-                "--additional-python-modules"
-            ].split(",")
+            self.modules = self.job["DefaultArguments"]["--additional-python-modules"].split(",")
         return True
 
     def inspect(self, job_name: str):
