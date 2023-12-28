@@ -1,4 +1,4 @@
-avro-python3==1.10.0
+avro-python3==1.10.2
 awscli==1.27.60
 boto3==1.12.4
 botocore==1.15.4
