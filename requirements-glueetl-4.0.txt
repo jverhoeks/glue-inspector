@@ -27,7 +27,7 @@ matplotlib==3.4.3
 mpmath==1.2.1
 multidict==6.0.4
 nltk==3.7
-numpy==1.23.5
+numpy==1.26.2
 packaging==23.0
 pandas==1.5.1
 patsy==0.5.1
