@@ -1,5 +1,5 @@
 # .pre-commit-config-extra.yaml
-default_stages: [commit]
+default_stages: [pre-commit]
 fail_fast: true
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -19,15 +19,15 @@ repos:
         verbose: false
         args: [--download-external-modules, "true", --quiet, --compact]
   # Python
-  - repo: https://github.com/python-poetry/poetry
-    rev: 1.3.2
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.8.6
     hooks:
-      - id: poetry-check
-  - repo: https://github.com/psf/black
-    rev: 22.12.0
-    hooks:
-    -   id: black
-        args: ["--config=pyproject.toml"]  # arguments to configure black
+    # Run the linter.
+    - id: ruff
+      args: [ --fix ]
+    # Run the formatter.
+    - id: ruff-format
   - repo: https://github.com/timothycrosley/isort
     rev: 5.12.0
     hooks:
@@ -43,7 +43,7 @@ repos:
   #   hooks:
   #     - id: pytest-check
   #       name: pytest-check
-  #       entry: "poetry run pytest"
+  #       entry: "uv tool run pytest"
   #       language: system
   #       pass_filenames: false
   #       always_run: true
