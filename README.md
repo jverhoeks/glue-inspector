@@ -71,6 +71,11 @@ I like to write blogpoosts about this. I have included a tool that combine the v
 uv run src/glue_inspector/report/generate-table.py > output.md
 ```
 
+trivy fs ~/.glue-inspector/requirements-glueetl-5.0.txt --file-patterns "pip:requirements-.*\.txt"  --scanners vuln,config,secret,license --list-all-pkgs  --format template --template "@markdown.tpl"
+
+
+
+
 
 ## Status
 
