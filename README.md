@@ -71,10 +71,18 @@ I like to write blogpoosts about this. I have included a tool that combine the v
 uv run src/glue_inspector/report/generate-table.py > output.md
 ```
 
-trivy fs ~/.glue-inspector/requirements-glueetl-5.0.txt --file-patterns "pip:requirements-.*\.txt"  --scanners vuln,config,secret,license --list-all-pkgs  --format template --template "@markdown.tpl"
+The output are also included in the [output directory](output/)
 
 
-
+filename | critical | high | medium | low | information
+-------- | -------- | ---- | ------ | --- | ----------
+[glueetl-2.0](output/glueetl-2.0.md) | 5 | 12 | 12 | 1 | 0
+[glueetl-3.0](output/glueetl-3.0.md) | 4 | 16 | 20 | 2 | 0
+[glueetl-4.0](output/glueetl-4.0.md) | 4 | 14 | 18 | 2 | 0
+[glueetl-5.0](output/glueetl-5.0.md) | 0 | 6 | 11 | 3 | 0
+[pythonshell-3.6](output/pythonshell-3.6.md) | 1 | 1 | 6 | 0 | 0
+[pythonshell-3.9](output/pythonshell-3.9.md) | 0 | 0 | 0 | 0 | 0
+[pythonshell-3.9-analytics](output/pythonshell-3.9-analytics.md) | 1 | 1 | 3 | 0 | 0
 
 
 ## Status
