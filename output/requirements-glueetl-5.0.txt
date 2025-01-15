@@ -28,7 +28,7 @@ idna==2.10
 importlib_resources==6.4.0
 jmespath==0.10.0
 kaleido==0.2.1
-kiwisolver==1.4.5
+kiwisolver==1.4.8
 libcomps==0.1.20
 matplotlib==3.9.0
 multidict==6.0.5
