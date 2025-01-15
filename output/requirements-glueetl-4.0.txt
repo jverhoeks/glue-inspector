@@ -23,7 +23,7 @@ importlib-metadata==5.0.0
 jmespath==0.10.0
 joblib==1.0.1
 kaleido==0.2.1
-kiwisolver==1.4.4
+kiwisolver==1.4.8
 matplotlib==3.4.3
 mpmath==1.2.1
 multidict==6.0.4
