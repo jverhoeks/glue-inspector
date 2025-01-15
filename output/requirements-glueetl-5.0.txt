@@ -11,7 +11,7 @@ boto3==1.34.131
 botocore==1.34.131
 certifi==2024.7.4
 cffi==1.14.5
-charset-normalizer==3.3.2
+charset-normalizer==3.4.1
 colorama==0.4.4
 contourpy==1.2.1
 cryptography==36.0.1
